@@ -28,13 +28,12 @@ body {
   align-items: flex-start;
 }
 
-.title h1{
+.title h1 {
   color: #cbc9c9ea;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: x-large;
   margin: 0;
 }
-
 
 /* .screen {
     border: 2px solid #000;
@@ -47,18 +46,18 @@ body {
   text-align: right;
 }
 
-.screen input:nth-child(1){
+.screen input:nth-child(1) {
   font-size: 2em;
   color: #777;
 }
 
-.screen input:nth-child(2){
+.screen input:nth-child(2) {
   font-size: 3em;
   color: #000;
 }
 
-.screen input:focus{
-    outline: none !important;
+.screen input:focus {
+  outline: none !important;
 }
 
 .buttons {
@@ -116,4 +115,210 @@ body {
 
 .buttons .mainButtons .additionalButton:focus {
   background: #ff3815;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 10% 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 4.85em;
+    height: 3em;
+  }
+}
+
+@media (max-width: 1280px) {
+  .container {
+    margin: 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 4.85em;
+    height: 3em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 40% 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 4.85em;
+    height: 3em;
+  }
+}
+
+@media (max-width: 780px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 35% 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 3.6em;
+    height: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 100px 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 2.95em;
+    height: 2em;
+  }
+
+  .buttons .advancedButtons{
+    display: none;
+  }
+
+  .buttons{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 120px 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 2.65em;
+    height: 2em;
+  }
+
+  .buttons .advancedButtons{
+    display: none;
+  }
+
+  .buttons{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 100px 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 2.4em;
+    height: 2em;
+  }
+
+  .buttons .advancedButtons{
+    display: none;
+  }
+
+  .buttons{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 360px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 100px 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 2.3em;
+    height: 1.5em;
+  }
+
+  .buttons .advancedButtons{
+    display: none;
+  }
+
+  .buttons{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 65px 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 2em;
+    height: 1.5em;
+    padding: 0;
+  }
+
+  .buttons .advancedButtons{
+    display: none;
+  }
+
+  .buttons{
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 280px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 100px 0 0 0;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 1.75em;
+    height: 1.2em;
+    padding: 0;
+  }
+
+  .buttons .advancedButtons{
+    display: none;
+  }
+
+  .buttons{
+    flex-direction: column;
+  }
 }
