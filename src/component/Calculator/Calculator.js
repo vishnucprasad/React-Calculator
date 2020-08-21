@@ -7,55 +7,87 @@ export class Calculator extends Component {
     input: "0",
     operationPerformed: "",
     oldValue: "0",
-    isDotClicked: false,
     operator: "",
+    isCalculateInit: false,
+    isOperatorClicked: false,
   };
 
   handleButtonClick = (value) => {
-    const { input } = this.state;
+    const { input, isOperatorClicked } = this.state;
 
-    if (input === "0") {
+    if (input === "0" || isOperatorClicked) {
       this.setState({
         input: value,
+        isOperatorClicked: false,
       });
     } else {
       this.setState({
-        input: input + value,
+        input: `${input}${value}`,
       });
     }
   };
 
-  handleOperatorClick = (operator) => {
-    const { input, operationPerformed } = this.state;
-    this.setState({
-      operator: operator,
-      operationPerformed: operationPerformed + input + operator,
-      oldValue: input,
-      input: "0",
-    });
+  handleOperatorClick = (operatorClicked) => {
+    const {
+      input,
+      isCalculateInit,
+      oldValue,
+      operator,
+      operationPerformed,
+    } = this.state;
+
+    if (operatorClicked === "=") {
+      this.setState({
+        operationPerformed: `${operationPerformed}${input}=`,
+        isCalculateInit: false,
+      });
+      this.handleOperation(oldValue, input, operator);
+    } else {
+      if (isCalculateInit) {
+        this.handleOperation(oldValue, input, operator);
+        this.setState({
+          operator: operatorClicked,
+          operationPerformed: `${operationPerformed}${input}${operatorClicked}`,
+          isOperatorClicked: true,
+        });
+      } else {
+        this.setState({
+          operator: operatorClicked,
+          operationPerformed: `${operationPerformed}${input}${operatorClicked}`,
+          oldValue: input,
+          isOperatorClicked: true,
+          isCalculateInit: true,
+        });
+      }
+    }
   };
 
   handleOperation = (firstValue, secondValue, operator) => {
-    const { input, operationPerformed } = this.state;
+    let result = 0;
+    firstValue = parseFloat(firstValue);
+    secondValue = parseFloat(secondValue);
+
     if (operator === "+") {
-      this.setState({
-        input: parseFloat(firstValue) + parseFloat(secondValue),
-      });
+      result = `${firstValue + secondValue}`;
     } else if (operator === "-") {
-      this.setState({
-        input: parseFloat(firstValue) - parseFloat(secondValue),
-      });
+      result = `${firstValue - secondValue}`;
     } else if (operator === "x") {
-      this.setState({
-        input: parseFloat(firstValue) * parseFloat(secondValue),
-      });
+      result = `${firstValue * secondValue}`;
     } else if (operator === "/") {
-      this.setState({
-        input: parseFloat(firstValue) / parseFloat(secondValue),
-      });
+      try {
+        if (secondValue === 0) {
+          throw new Error("Can't divide by zero.");
+        } else {
+          result = `${firstValue / secondValue}`;
+        }
+      } catch (err) {
+        result = err;
+      }
     }
+
     this.setState({
-      operationPerformed: operationPerformed + input + "=",
+      input: result,
+      oldValue: result,
     });
   };
 
@@ -63,7 +95,10 @@ export class Calculator extends Component {
     this.setState({
       input: "0",
       operationPerformed: "",
-      isDotClicked: false,
+      isOperatorClicked: false,
+      isCalculateInit: false,
+      oldValue: "0",
+      operator: "",
     });
   };
 
@@ -75,11 +110,10 @@ export class Calculator extends Component {
   };
 
   handleDotClick = () => {
-    const { isDotClicked, input } = this.state;
-    if (!isDotClicked) {
+    const { input } = this.state;
+    if (Number.isInteger(parseFloat(input))) {
       this.setState({
-        input: input + ".",
-        isDotClicked: true,
+        input: `${input}.`,
       });
     }
   };
@@ -92,15 +126,15 @@ export class Calculator extends Component {
   };
 
   handleRoot = () => {
-    const { input } = this.state;
+    const { input, operationPerformed } = this.state;
     this.setState({
       input: Math.sqrt(input),
-      operationPerformed: "√" + input,
+      operationPerformed: `${operationPerformed}√${input}`,
     });
   };
 
   render() {
-    const { input, operationPerformed, oldValue, operator } = this.state;
+    const { input, operationPerformed } = this.state;
     return (
       <div className="container">
         <div className="calculator">
@@ -230,9 +264,7 @@ export class Calculator extends Component {
                 <input
                   className="additionalButton"
                   type="button"
-                  onClick={() =>
-                    this.handleOperation(oldValue, input, operator)
-                  }
+                  onClick={() => this.handleOperatorClick("=")}
                   value="="
                 />
                 <input
