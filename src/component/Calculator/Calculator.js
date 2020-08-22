@@ -10,12 +10,19 @@ export class Calculator extends Component {
     operator: "",
     isCalculateInit: false,
     isOperatorClicked: false,
+    isErrorOccured: false,
   };
 
   handleButtonClick = (value) => {
-    const { input, isOperatorClicked } = this.state;
+    const { input, isOperatorClicked, isErrorOccured } = this.state;
 
-    if (input === "0" || isOperatorClicked) {
+    if (input === "0" || isOperatorClicked || isErrorOccured) {
+      if (isErrorOccured) {
+        for (let i = 0; i < 7; i++) {
+          document.getElementsByClassName("operatorButton")[i].disabled = false;
+        }
+        this.handleClearScreen();
+      }
       this.setState({
         input: value,
         isOperatorClicked: false,
@@ -34,16 +41,33 @@ export class Calculator extends Component {
       oldValue,
       operator,
       operationPerformed,
+      isOperatorClicked,
+      isErrorOccured,
     } = this.state;
 
     if (operatorClicked === "=") {
-      this.setState({
-        operationPerformed: `${operationPerformed}${input}=`,
-        isCalculateInit: false,
-      });
-      this.handleOperation(oldValue, input, operator);
+      if (isErrorOccured) {
+        for (let i = 0; i < 7; i++) {
+          document.getElementsByClassName("operatorButton")[i].disabled = false;
+        }
+        this.handleClearScreen();
+      } else {
+        this.setState({
+          operationPerformed: `${operationPerformed}${input}=`,
+          isCalculateInit: false,
+        });
+        this.handleOperation(oldValue, input, operator);
+      }
     } else {
-      if (isCalculateInit) {
+      if (isOperatorClicked) {
+        this.setState({
+          operator: operatorClicked,
+          operationPerformed: `${operationPerformed.substring(
+            0,
+            operationPerformed.length - 1
+          )}${operatorClicked}`,
+        });
+      } else if (isCalculateInit) {
         this.handleOperation(oldValue, input, operator);
         this.setState({
           operator: operatorClicked,
@@ -81,7 +105,13 @@ export class Calculator extends Component {
           result = `${firstValue / secondValue}`;
         }
       } catch (err) {
-        result = err;
+        result = `${err}`;
+        for (let i = 0; i < 7; i++) {
+          document.getElementsByClassName("operatorButton")[i].disabled = true;
+        }
+        this.setState({
+          isErrorOccured: true,
+        });
       }
     }
 
@@ -97,6 +127,7 @@ export class Calculator extends Component {
       operationPerformed: "",
       isOperatorClicked: false,
       isCalculateInit: false,
+      isErrorOccured: false,
       oldValue: "0",
       operator: "",
     });
@@ -110,8 +141,13 @@ export class Calculator extends Component {
   };
 
   handleDotClick = () => {
-    const { input } = this.state;
-    if (Number.isInteger(parseFloat(input))) {
+    const { input, isOperatorClicked } = this.state;
+    if (isOperatorClicked) {
+      this.setState({
+        input: "0.",
+        isOperatorClicked: false,
+      });
+    } else if (Number.isInteger(parseFloat(input))) {
       this.setState({
         input: `${input}.`,
       });
@@ -250,7 +286,7 @@ export class Calculator extends Component {
               </div>
               <div className="fourthRow">
                 <input
-                  className="additionalButton"
+                  className="operatorButton additionalButton"
                   onClick={this.handleDotClick}
                   type="button"
                   value="."

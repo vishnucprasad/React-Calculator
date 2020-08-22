@@ -46,6 +46,10 @@ body {
   text-align: right;
 }
 
+.screen input:hover {
+  cursor: default;
+}
+
 .screen input:nth-child(1) {
   font-size: 2em;
   color: #777;
@@ -83,7 +87,8 @@ body {
   border: 0;
 }
 
-.buttons .mainButtons .numericButton:focus {
+.buttons .mainButtons .numericButton:focus,
+.buttons .mainButtons .numericButton:hover {
   background: #eee;
 }
 
@@ -93,7 +98,8 @@ body {
   color: #fff;
 }
 
-.buttons .mainButtons .operatorButton:focus {
+.buttons .mainButtons .operatorButton:focus,
+.buttons .mainButtons .operatorButton:hover {
   background: #f07800;
 }
 
@@ -103,7 +109,8 @@ body {
   color: #000;
 }
 
-.buttons .advancedButtons .scientificButton:focus {
+.buttons .advancedButtons .scientificButton:focus,
+.buttons .advancedButtons .scientificButton:hover {
   background: #fff;
 }
 
@@ -113,9 +120,19 @@ body {
   color: #fff;
 }
 
-.buttons .mainButtons .additionalButton:focus {
+.buttons .mainButtons .additionalButton:focus,
+.buttons .mainButtons .additionalButton:hover {
   background: #ff3815;
 }
+
+.buttons .operatorButton:disabled,
+.buttons .operatorButton:disabled:hover,
+.buttons .additionalButton:disabled,
+.buttons .additionalButton:disabled:hover {
+  background: #aaa;
+  color: #ccc;
+}
+
 
 @media (max-width: 1440px) {
   .container {
@@ -161,6 +178,26 @@ body {
   }
 }
 
+@media (max-width: 830px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 0 0 0 0;
+  }
+
+  .screen input {
+    height: 1.5em;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 3.9em;
+    height: 1.95em;
+  }
+}
+
 @media (max-width: 780px) {
   .container {
     margin: 0;
@@ -174,6 +211,106 @@ body {
   .buttons .advancedButtons input {
     width: 3.6em;
     height: 2em;
+  }
+}
+
+@media (max-width: 740px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 0 0 0 0;
+  }
+
+  .screen input {
+    height: 1.5em;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 3.5em;
+    height: 1.9em;
+  }
+}
+
+@media (max-width: 670px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 0 0 0 0;
+  }
+
+  .screen input {
+    height: 1.5em;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 3.1em;
+    height: 1.6em;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 0 0 0 0;
+  }
+
+  .screen input {
+    height: 1.5em;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 3.05em;
+    height: 1.5em;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 0 0 0 0;
+  }
+
+  .screen input {
+    height: 1.5em;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 2.85em;
+    height: 1.5em;
+  }
+}
+
+@media (max-width: 570px) {
+  .container {
+    margin: 0;
+  }
+
+  .calculator {
+    margin: 0 0 0 0;
+  }
+
+  .screen input {
+    height: 1.5em;
+  }
+
+  .buttons .mainButtons input,
+  .buttons .advancedButtons input {
+    width: 2.65em;
+    height: 1.2em;
   }
 }
 
@@ -192,11 +329,11 @@ body {
     height: 2em;
   }
 
-  .buttons .advancedButtons{
+  .buttons .advancedButtons {
     display: none;
   }
 
-  .buttons{
+  .buttons {
     flex-direction: column;
   }
 }
@@ -216,11 +353,11 @@ body {
     height: 2em;
   }
 
-  .buttons .advancedButtons{
+  .buttons .advancedButtons {
     display: none;
   }
 
-  .buttons{
+  .buttons {
     flex-direction: column;
   }
 }
@@ -240,11 +377,11 @@ body {
     height: 2em;
   }
 
-  .buttons .advancedButtons{
+  .buttons .advancedButtons {
     display: none;
   }
 
-  .buttons{
+  .buttons {
     flex-direction: column;
   }
 }
@@ -264,11 +401,11 @@ body {
     height: 1.5em;
   }
 
-  .buttons .advancedButtons{
+  .buttons .advancedButtons {
     display: none;
   }
 
-  .buttons{
+  .buttons {
     flex-direction: column;
   }
 }
@@ -289,11 +426,11 @@ body {
     padding: 0;
   }
 
-  .buttons .advancedButtons{
+  .buttons .advancedButtons {
     display: none;
   }
 
-  .buttons{
+  .buttons {
     flex-direction: column;
   }
 }
@@ -314,11 +451,11 @@ body {
     padding: 0;
   }
 
-  .buttons .advancedButtons{
+  .buttons .advancedButtons {
     display: none;
   }
 
-  .buttons{
+  .buttons {
     flex-direction: column;
   }
 }
