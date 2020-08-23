@@ -121,6 +121,32 @@ export class Calculator extends Component {
     });
   };
 
+  handleTrignometry = (operatorClicked) => {
+    const { input } = this.state;
+    let result = 0;
+    let value = parseFloat(input);
+    if (operatorClicked === "sin") {
+      result = Math.sin((value * Math.PI) / 180);
+    } else if (operatorClicked === "cos") {
+      result = Math.cos((value * Math.PI) / 180);
+    } else if (operatorClicked === "tan") {
+      result = Math.tan((value * Math.PI) / 180);
+    } else if (operatorClicked === "sec") {
+      result = 1 / Math.sin((value * Math.PI) / 180);
+    } else if (operatorClicked === "csc") {
+      result = 1 / Math.cos((value * Math.PI) / 180);
+    } else if (operatorClicked === "cot") {
+      result = 1 / Math.tan((value * Math.PI) / 180);
+    }
+
+    this.setState({
+      input: `${result}`,
+      oldValue: `${result}`,
+      isOperatorClicked: true,
+      operationPerformed: `${operatorClicked}(${value})`,
+    });
+  };
+
   handleClearScreen = () => {
     this.setState({
       input: "0",
@@ -319,20 +345,72 @@ export class Calculator extends Component {
             </div>
             <div className="advancedButtons">
               <div className="firstRow">
-                <input className="scientificButton" type="button" value="hyp" />
-                <input className="scientificButton" type="button" value="rad" />
+                <input
+                  className="memoryButton"
+                  type="button"
+                  onClick={() => this.handleTrignometry("hyp")}
+                  value="MC"
+                />
+                <input
+                  className="memoryButton"
+                  onClick={() => this.handleTrignometry("rad")}
+                  type="button"
+                  value="MR"
+                />
+                <input
+                  className="memoryButton"
+                  type="button"
+                  onClick={() => this.handleTrignometry("hyp")}
+                  value="M+"
+                />
+                <input
+                  className="memoryButton"
+                  onClick={() => this.handleTrignometry("rad")}
+                  type="button"
+                  value="M-"
+                />
               </div>
               <div className="secondRow">
-                <input className="scientificButton" type="button" value="sin" />
-                <input className="scientificButton" type="button" value="sec" />
+                <input
+                  className="scientificButton"
+                  onClick={() => this.handleTrignometry("sin")}
+                  type="button"
+                  value="sin"
+                />
+                <input
+                  className="scientificButton"
+                  onClick={() => this.handleTrignometry("sec")}
+                  type="button"
+                  value="sec"
+                />
               </div>
               <div className="thirdRow">
-                <input className="scientificButton" type="button" value="cos" />
-                <input className="scientificButton" type="button" value="cse" />
+                <input
+                  className="scientificButton"
+                  onClick={() => this.handleTrignometry("cos")}
+                  type="button"
+                  value="cos"
+                />
+                <input
+                  className="scientificButton"
+                  onClick={() => this.handleTrignometry("csc")}
+                  type="button"
+                  value="csc"
+                />
               </div>
               <div className="fourthRow">
-                <input className="scientificButton" type="button" value="tan" />
-                <input className="scientificButton" type="button" value="cot" />
+                <input
+                  className="scientificButton"
+                  onClick={() => this.handleTrignometry("tan")}
+                  type="button"
+                  value="tan"
+                />
+                <input
+                  className="scientificButton"
+                  onClick={() => this.handleTrignometry("cot")}
+                  type="button"
+                  value="cot"
+                />
               </div>
             </div>
           </div>
