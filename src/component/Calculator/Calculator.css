@@ -114,6 +114,21 @@ body {
   background: #fff;
 }
 
+.buttons .advancedButtons .memoryButton {
+  background: #eee;
+  border: 0;
+  color: #000;
+  width: 25%;
+  font-size: 100%;
+  padding-top: 5%;
+  padding-bottom: 20%;
+}
+
+.buttons .advancedButtons .memoryButton:focus,
+.buttons .advancedButtons .memoryButton:hover {
+  background: #fff;
+}
+
 .buttons .mainButtons .additionalButton {
   background: #ff4625;
   border: 0;
