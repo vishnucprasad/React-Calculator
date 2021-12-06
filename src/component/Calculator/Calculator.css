@@ -5,7 +5,7 @@ body {
 .container {
   margin: 0 10em 0 10em;
   display: flex;
-  flex-direction: column;
+  height: 100vh;
   align-items: center;
   justify-content: center;
 }
@@ -147,7 +147,6 @@ body {
   background: #aaa;
   color: #ccc;
 }
-
 
 @media (max-width: 1440px) {
   .container {
